@@ -1,23 +1,29 @@
 package hexlet.code.schemas;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Predicate;
 
 public class StringSchema extends BaseSchema {
 
-    public StringSchema required() {
-        addListRules(sentence -> sentence instanceof String && ((String) sentence).length() > 0);
+    public final StringSchema required() {
+        this.required = true;
+        Predicate<Object> rules = value -> value instanceof String && !value.equals("");
+        super.addListRules(rules);
         return this;
     }
 
     public StringSchema minLength(int minLength) {
-        addListRules(sentence -> sentence == null || sentence instanceof String && ((String) sentence).length() >= minLength);
+        Predicate<Object> rules = value -> value.toString().length() >= minLength;
+        super.addListRules(rules);
         return this;
     }
 
-    public StringSchema contains(String value) {
-        addListRules(sentence -> sentence == null || sentence instanceof String && ((String) sentence).contains(value));
+    public StringSchema contains(String substring) {
+        addListRules(value -> value == null || value instanceof String && ((String) value).contains(substring));
         return this;
+    }
+
+    @Override
+    boolean isInvalidData(Object value) {
+        return !(value instanceof String) || ((String) value).isEmpty();
     }
 }
