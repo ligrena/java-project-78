@@ -16,7 +16,7 @@ public class MapSchema extends BaseSchema {
         return this;
     }
 
-    public MapSchema shape(Map<String, BaseSchema> schemas) {
+    public MapSchema shape(Map<String, BaseSchema<String>> schemas) {
         addListRules(checkedMap -> checkedMap == null
                 || checkedMap instanceof HashMap<?, ?> && ((HashMap<?, ?>) checkedMap)
                 .keySet() //get keySet of checked Map
