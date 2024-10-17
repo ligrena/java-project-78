@@ -1,0 +1,12 @@
+# Default ignored files
+.gradle
+.Gradle
+.allure
+.vagrant
+.idea
+
+build
+out
+
+/shelf/
+/workspace.xml
