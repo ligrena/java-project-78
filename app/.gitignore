@@ -1,0 +1,7 @@
+.gradle
+.allure
+.vagrant
+.idea
+
+build
+out
