@@ -2,7 +2,7 @@ package hexlet.code.schemas;
 
 import java.util.function.Predicate;
 
-public class StringSchema extends BaseSchema<String> {
+public final class StringSchema extends BaseSchema<String> {
 
     public final StringSchema required() {
         Predicate<String> isNotEmpty = string -> string != null && !(string.trim().isEmpty());

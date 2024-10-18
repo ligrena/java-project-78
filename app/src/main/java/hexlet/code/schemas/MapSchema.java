@@ -3,9 +3,9 @@ package hexlet.code.schemas;
 import java.util.Map;
 import java.util.function.Predicate;
 
-public class MapSchema extends BaseSchema {
+public final class MapSchema extends BaseSchema {
 
-    public final MapSchema required() {
+    public MapSchema required() {
         Predicate<Map> required = map -> map != null;
         listRules.put("required", required);
         return this;
