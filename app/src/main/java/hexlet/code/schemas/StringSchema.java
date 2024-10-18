@@ -2,28 +2,23 @@ package hexlet.code.schemas;
 
 import java.util.function.Predicate;
 
-public class StringSchema extends BaseSchema {
+public class StringSchema extends BaseSchema<String> {
 
     public final StringSchema required() {
-        this.required = true;
-        Predicate<Object> rules = value -> value instanceof String && !value.equals("");
-        super.addListRules(rules);
+        Predicate<String> isNotEmpty = string -> string != null && !(string.trim().isEmpty());
+        listRules.put("isNotEmpty", isNotEmpty);
         return this;
     }
 
-    public StringSchema minLength(int minLength) {
-        Predicate<Object> rules = value -> value.toString().length() >= minLength;
-        super.addListRules(rules);
+    public StringSchema minLength(int min) {
+        Predicate<String> minLength = string -> string.length() >= min;
+        listRules.put("minLength", minLength);
         return this;
     }
 
     public StringSchema contains(String substring) {
-        addListRules(value -> value == null || value instanceof String && ((String) value).contains(substring));
+        Predicate<String> contains = string -> string.contains(substring);
+        listRules.put("contains", contains);
         return this;
-    }
-
-    @Override
-    boolean isInvalidData(Object value) {
-        return !(value instanceof String) || ((String) value).isEmpty();
     }
 }
