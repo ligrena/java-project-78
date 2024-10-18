@@ -4,7 +4,7 @@ import java.util.function.Predicate;
 
 public final class NumberSchema extends BaseSchema {
 
-    public final NumberSchema required() {
+    public NumberSchema required() {
         Predicate<Integer> required = i -> i != null;
         listRules.put("required", required);
         return this;

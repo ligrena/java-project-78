@@ -4,7 +4,7 @@ import java.util.function.Predicate;
 
 public final class StringSchema extends BaseSchema<String> {
 
-    public final StringSchema required() {
+    public StringSchema required() {
         Predicate<String> isNotEmpty = string -> string != null && !(string.trim().isEmpty());
         listRules.put("isNotEmpty", isNotEmpty);
         return this;
